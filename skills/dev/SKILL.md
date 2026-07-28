@@ -69,13 +69,7 @@ The codebase is the incumbent; learn it before touching it:
 
 ## Resume
 
-`.dev/PROGRESS.md` is the index, not the archive — read it, then zoom into what it points at (spec, open tickets, handoff files, the wayfinder map) only as needed:
-
-1. Read `.dev/PROGRESS.md`. State to the user, in two lines: the effort, and its recorded **next action**.
-2. Verify the next action is still true (tickets may have closed, files may have moved). Adjust if stale.
-3. Confirm with the user, then run it.
-
-If the progress file points at a handoff file, read that too — it carries the conversation the previous session couldn't.
+Run the resume procedure in [`skills/continue/SKILL.md`](../continue/SKILL.md) — the same one `/continue` gives the user directly after a `/clear`.
 
 ## Context hygiene
 
