@@ -25,8 +25,9 @@ S | M | L | XL
 <where in the route the effort is, e.g. "tickets cut, 2 of 5 implemented">
 
 ## Next action
-<the single next step, as an invocation a fresh session can run, tagged with its model tier,
-e.g. "/implement .scratch/checkout/issues/003-payment-webhook.md — Medium">
+<the single next step, as an invocation a fresh session can run — in a code span
+so it pastes clean, model tier after it:
+`/implement .scratch/checkout/issues/003-payment-webhook.md` — Medium>
 
 ## Pointers
 - Tracker: <where the open tickets live>
@@ -37,7 +38,7 @@ e.g. "/implement .scratch/checkout/issues/003-payment-webhook.md — Medium">
 ```
 
 3. Keep only the pointer lines that apply. Every path you write must exist — verify each.
-4. Look up the Next action's skill in `skills/model-routing/SKILL.md`'s tier table and append its tier (Heavy / Medium / Light) to the line.
-5. Quote the **Next action** string in your reply, inside a code span, character-for-character identical to what you just wrote in the file — e.g. `` `/tdd .scratch/checkout/issues/003-payment-webhook.md — Medium` ``. Prose *about* it ("next action is still ticket 03") is not the invocation; the user must be able to copy what you wrote straight into the prompt.
+4. Take the tier (Heavy / Medium / Light) from the tier table in `skills/model-routing/SKILL.md`. It sits *outside* the code span: the span is what the user pastes, the tier tells them which model to open first. An action with no row in the table (a human step, an unlisted skill) gets the invocation alone.
+5. Quote the **Next action** line in your reply, character-for-character identical to the file. Prose *about* it ("next action is still ticket 03") is not the invocation; the user must be able to paste the code span straight into the prompt.
 
-Completion criterion: checkable — your reply contains a code span holding the Next action string and its tier, matching the file byte-for-byte.
+Completion criterion: a fresh session reading only this file knows the effort, the phase, and can run **Next action** without asking the user where things stand — and your reply carries the Next action line verbatim, so resuming needs neither the file nor a question.
