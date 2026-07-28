@@ -1,0 +1,9 @@
+{
+  "name": "dev-framework",
+  "description": "A guided dev workflow on top of Matt Pocock's engineering skills and Hallmark's anti-slop design skill: /dev routes any situation (new project, existing codebase, resume) to the right skill at the right scale.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Wehming Tan",
+    "email": "wehming.tan@gmail.com"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "upstreams": [
+    {
+      "name": "mattpocock-skills",
+      "repo": "mattpocock/skills",
+      "branch": "main",
+      "commit": "ed37663cc5fbef691ddfecd080dff42f7e7e350d",
+      "paths": ["skills/engineering", "skills/productivity"],
+      "mapping": "each skill folder is flattened into skills/<name>/ in this repo (categories dropped)"
+    },
+    {
+      "name": "hallmark",
+      "repo": "Nutlope/hallmark",
+      "branch": "main",
+      "commit": "aeb42fb354ff4efa36ab475773a082315a3af2ce",
+      "paths": ["skills/hallmark"],
+      "mapping": "skills/hallmark is copied verbatim to skills/hallmark/"
+    }
+  ]
+}

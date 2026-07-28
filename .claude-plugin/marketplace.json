@@ -1,0 +1,14 @@
+{
+  "name": "dev-framework",
+  "owner": {
+    "name": "Wehming Tan",
+    "email": "wehming.tan@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "dev-framework",
+      "source": "./",
+      "description": "Guided dev workflow: Matt Pocock's engineering skills + Hallmark design + a /dev router, progress tracking, model routing, and a design gate."
+    }
+  ]
+}
