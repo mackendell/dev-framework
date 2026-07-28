@@ -14,7 +14,7 @@ These skills are plain markdown (Agent Skills standard), so they run unchanged i
 | Tier | Phases / skills | Why |
 | --- | --- | --- |
 | **Heavy** (deep-reasoning model, e.g. Opus-class) | `/wayfinder`, `/grill-with-docs`, `/grill-me`, `/domain-modeling`, `/to-spec`, `/codebase-design`, `/improve-codebase-architecture`, `/diagnosing-bugs` (the hard ones), `/code-review`, `/design-gate` + hallmark's Design flow | Open decision space. Errors here compound into every downstream ticket. |
-| **Medium** (mid-tier model, e.g. Sonnet-class) | `/implement` on an agent-ready ticket, `/tdd` slices, `/to-tickets` from a finished spec, `/prototype`, `/triage` | The shape of the work is fixed; the model executes and verifies against feedback loops. |
+| **Medium** (mid-tier model, e.g. Sonnet-class) | `/implement` on an agent-ready ticket, `/tdd` slices, `/verify-acs`, `/to-tickets` from a finished spec, `/prototype`, `/triage` | The shape of the work is fixed; the model executes and verifies against feedback loops. |
 | **Light** (small model, or any other coding agent) | `/research` (reading legwork), `/checkpoint`, boilerplate and mechanical edits, running test suites, lockfile/dep bumps | Verifiable output, near-zero decision content. |
 
 Tier is a floor on *judgment*, not a cap on tooling: a medium ticket that unexpectedly surfaces a real decision goes **back up** — stop, note the question on the ticket, and return it to the heavy model rather than deciding down-tier.

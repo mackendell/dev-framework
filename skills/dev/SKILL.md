@@ -29,18 +29,19 @@ Every effort gets a **scale** before it gets a process. Ceremony must match scal
 | **L** | Multi-session build, questions answerable in conversation | Grill → `/to-spec` → `/to-tickets` → `/implement` per ticket, fresh context each. |
 | **XL** | Foggy epic — the way to the destination isn't visible | `/wayfinder` to chart and resolve decisions; when the map clears, merge onto L at `/to-spec`. |
 
-Two overlays apply at any scale:
+Three overlays apply at any scale:
 
 - **User-facing UI in scope?** → run `/design-gate` **before** implementation is planned. The look is settled and signed off first; backend work serves the approved frontend, not the other way round.
 - **Something is broken?** → `/diagnosing-bugs` before any fix. A bug that survives a first glance gets the loop, not a guess.
+- **Asking the user anything?** → the `questionnaire` skill governs the form, in every phase — sizing, grilling, quizzes, sign-offs.
 
 Completion criterion: scale named, route named, user has agreed (one line each).
 
 ## Step 3 — Run the route
 
-A router hints more than it fires. Most routed skills are **user-invoked** — only the human can reach them — so hand the user the exact next invocation to type (`/grill-with-docs`, `/to-spec`, `/to-tickets`, `/implement`, `/wayfinder`, `/triage`, `/improve-codebase-architecture`, `/handoff`) and pick the thread back up when it's done. The **model-invoked** skills on a route (`/design-gate`, `/tdd`, `/diagnosing-bugs`, `/prototype`, `/checkpoint`, `hallmark`) you invoke yourself at the moment the route reaches them.
+A router hints more than it fires. Most routed skills are **user-invoked** — only the human can reach them — so hand the user the exact next invocation to type (`/grill-with-docs`, `/to-spec`, `/to-tickets`, `/implement`, `/wayfinder`, `/triage`, `/improve-codebase-architecture`, `/handoff`) and pick the thread back up when it's done. The **model-invoked** skills on a route (`/design-gate`, `/tdd`, `/diagnosing-bugs`, `/prototype`, `/verify-acs`, `/checkpoint`, `hallmark`) you invoke yourself at the moment the route reaches them.
 
-Between phases, keep [context hygiene](#context-hygiene). After each phase boundary — grilling done, spec written, tickets cut, a ticket implemented, a design signed off — fire `/checkpoint` so `.dev/PROGRESS.md` reflects reality.
+Between phases, keep [context hygiene](#context-hygiene). A ticket counts as implemented only once `/verify-acs` has settled its acceptance criteria into verdicts. After each phase boundary — grilling done, spec written, tickets cut, a ticket implemented, a design signed off — fire `/checkpoint` so `.dev/PROGRESS.md` reflects reality.
 
 Completion criterion for the session: the phase you set out to finish is finished **and** checkpointed, or a handoff file exists for what isn't.
 

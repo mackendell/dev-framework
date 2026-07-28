@@ -4,7 +4,7 @@ A guided development workflow for coding agents. Two vendored skill sets supply 
 
 - **[mattpocock/skills](https://github.com/mattpocock/skills)** — engineering: grilling, specs, tickets, TDD, code review, wayfinding, architecture.
 - **[Nutlope/hallmark](https://github.com/Nutlope/hallmark)** — design: anti-slop rules, structural variety, real themes.
-- **The native layer** — `/dev` (the front door), `/checkpoint` (resumable progress), `/design-gate` (who designs), `/model-routing` (where each phase runs), `/check-upstream` (keeping the vendored skills fresh).
+- **The native layer** — `/dev` (the front door), `/checkpoint` (resumable progress), `/design-gate` (who designs), `/verify-acs` (acceptance criteria settled into verdicts), `questionnaire` (questions asked as structured questionnaires), `/model-routing` (where each phase runs), `/check-upstream` (keeping the vendored skills fresh).
 
 The hard rules live in [`PRINCIPLES.md`](PRINCIPLES.md); the upstream pins in [`upstream.lock.json`](upstream.lock.json).
 
@@ -47,6 +47,8 @@ Each guarantee is enforced by a skill; the linked file is the source of truth.
 
 - **Alignment before code.** Every non-trivial change starts with grilling — closing the gap between what you mean and what the agent builds ([`PRINCIPLES.md`](PRINCIPLES.md)).
 - **Frontend first, and no AI slop.** `/design-gate` runs before user-facing work is planned: you pick who designs (the agent via hallmark, an external design agent via a paste-ready brief, or a design you supply), and the gate closes only on your approval of a *visible* artifact. Icons come from established libraries, never free-handed SVG, and hallmark's [anti-pattern rules](skills/hallmark/references/anti-patterns.md) bind all UI code whichever lane produced the design ([`skills/design-gate/SKILL.md`](skills/design-gate/SKILL.md)).
+- **Questions arrive as questionnaires.** Whenever the agent needs your input — grilling, sizing, ticket quizzes, design sign-off, verification — it presents a structured questionnaire with selectable options and a recommendation, one decision at a time, instead of open questions in prose ([`skills/questionnaire/SKILL.md`](skills/questionnaire/SKILL.md)).
+- **Done means verified.** A ticket counts as implemented only when every acceptance criterion has a verdict backed by evidence — covered by a test, confirmed by observation, or untouched by the change. The agent proves everything its own tools can reach; only the residue that needs human eyes reaches you, as a questionnaire answered one criterion at a time ([`skills/verify-acs/SKILL.md`](skills/verify-acs/SKILL.md)).
 - **Progress lives in files, not sessions.** `/checkpoint` keeps `.dev/PROGRESS.md` — a one-screen index of effort, scale, phase, and next action — current at every phase boundary, so any session can die and any fresh one can resume ([`skills/checkpoint/SKILL.md`](skills/checkpoint/SKILL.md)).
 - **Decisions on heavy models, execution wherever it's cheapest.** Grilling, specs, architecture, and review stay on a deep-reasoning model; agent-ready tickets deliberately don't need one and can run on Codex, opencode, or a smaller Claude model — the skills are plain markdown (Agent Skills standard) and travel with the repo. Review of the diff comes back to the heavy model ([`skills/model-routing/SKILL.md`](skills/model-routing/SKILL.md)).
 - **Upstream updates flow in; your hacks survive.** `/check-upstream` diffs each pinned upstream against its tip, reports new / updated / diverged / removed skills, merges what you pick, and re-pins. Locally edited files are treated as authored code, never auto-overwritten ([`skills/check-upstream/SKILL.md`](skills/check-upstream/SKILL.md)).
@@ -61,6 +63,8 @@ Each guarantee is enforced by a skill; the linked file is the source of truth.
 | [`dev`](skills/dev/SKILL.md) | `/dev [idea or task]` | Front door: situates, sizes (S–XL), routes. |
 | [`checkpoint`](skills/checkpoint/SKILL.md) | auto + `/checkpoint` | Keeps `.dev/PROGRESS.md` resumable at every phase boundary. |
 | [`design-gate`](skills/design-gate/SKILL.md) | auto, before UI work | Who designs; sign-off on a visible artifact before backend. |
+| [`verify-acs`](skills/verify-acs/SKILL.md) | auto, as a ticket wraps | Every acceptance criterion gets a verdict; the agent proves what it can, the user is quizzed one-by-one on the rest. |
+| [`questionnaire`](skills/questionnaire/SKILL.md) | auto, on any question to the user | Questions arrive as structured questionnaires with selectable options, never plain prose. |
 | [`model-routing`](skills/model-routing/SKILL.md) | auto + on demand | Heavy/medium/light tiers per phase; protocol for crossing to other agents. |
 | [`check-upstream`](skills/check-upstream/SKILL.md) | `/check-upstream` | Diff vendored skills against upstream tips; merge and re-pin. |
 
