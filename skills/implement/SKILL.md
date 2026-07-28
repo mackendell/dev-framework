@@ -13,3 +13,7 @@ Run typechecking regularly, single test files regularly, and the full test suite
 Once done, use /code-review to review the work.
 
 Commit your work to the current branch.
+
+Once the commit lands, invoke `/verify-acs` — the ticket counts as implemented only when its acceptance criteria are settled — then fire `/checkpoint`.
+
+Blocked mid-ticket (a decision only the user can make, a go-ahead on an irreversible step, access you lack)? Fire `/checkpoint` first, then ask the blocking question per the `questionnaire` skill.
