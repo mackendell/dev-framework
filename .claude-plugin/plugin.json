@@ -4,6 +4,5 @@
   "author": {
     "name": "Wehming Tan",
     "email": "wehming.tan@gmail.com"
-  },
-  "hooks": "./hooks/hooks.json"
+  }
 }
