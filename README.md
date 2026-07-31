@@ -4,7 +4,7 @@ A guided development workflow for coding agents. Two vendored skill sets supply 
 
 - **[mattpocock/skills](https://github.com/mattpocock/skills)** — engineering: grilling, specs, tickets, TDD, code review, wayfinding, architecture.
 - **[Nutlope/hallmark](https://github.com/Nutlope/hallmark)** — design: anti-slop rules, structural variety, real themes.
-- **The native layer** — `/dev` (the front door), `/continue` (resume after `/clear`), `/checkpoint` (resumable progress), `/design-gate` (who designs), `/verify-acs` (acceptance criteria settled into verdicts), `questionnaire` (questions asked as structured questionnaires), `/model-routing` (where each phase runs), `/check-upstream` (keeping the vendored skills fresh).
+- **The native layer** — `/dev` (the initializer), `/continue` (resume after `/clear`), `/checkpoint` (resumable progress), `/design-gate` (who designs), `/verify-acs` (acceptance criteria settled into verdicts), `questionnaire` (questions asked as structured questionnaires), `/model-routing` (where each phase runs), `/check-upstream` (keeping the vendored skills fresh).
 
 The hard rules live in [`PRINCIPLES.md`](PRINCIPLES.md); the upstream pins in [`upstream.lock.json`](upstream.lock.json).
 
@@ -25,18 +25,15 @@ scripts/install.sh /path/to/your/project
 
 ## Use
 
-Run `/dev`. That's the whole interface. It makes three moves ([`skills/dev/SKILL.md`](skills/dev/SKILL.md)):
+Run `/dev` once per project. It names your situation — greenfield, takeover of an existing codebase, or resuming from `.dev/PROGRESS.md` — lays the ground (tracker and doc layout via `/setup-matt-pocock-skills`), hands you the route menu, and stops ([`skills/dev/SKILL.md`](skills/dev/SKILL.md)). From there you drive:
 
-1. **Situate** — greenfield, takeover of an existing codebase, or resuming a prior effort from `.dev/PROGRESS.md`.
-2. **Size** — every effort gets a scale before it gets a process: **S** (direct fix, no ceremony), **M** (grill → implement in one window), **L** (spec → tickets → implement per ticket), **XL** (wayfinder map first). Ceremony matches scale.
-3. **Route** — into the right skills, with two overlays at any scale: user-facing UI triggers `/design-gate` before implementation is planned, and anything broken goes through `/diagnosing-bugs` before any fix.
-
-Common situations, and where `/dev` sends them:
-
-| You bring | It routes to |
+| You have | Type |
 | --- | --- |
-| An empty folder and an idea | tracker setup → `/grill-me` (or `/wayfinder` for a foggy epic) → design gate if the product has a face → spec → tickets → implement |
-| A bug in an existing codebase | `/diagnosing-bugs`, then the fix at scale |
+| An idea, no codebase yet | `/grill-me` |
+| An idea against an existing codebase | `/grill-with-docs` |
+| A foggy epic | `/wayfinder` |
+| A grilled idea ready to build | `/to-spec` → `/to-tickets` → `/implement` per ticket; one-sitting work goes straight to `/tdd` or a direct edit |
+| A bug | `/diagnosing-bugs` |
 | "Make this codebase better" | `/improve-codebase-architecture` |
 | A pile of raw issues | `/triage`, then `/implement` the agent-ready ones |
 | A dead or cleared session | `/continue` — reads `.dev/PROGRESS.md` and resumes from **Next action** |
@@ -47,9 +44,9 @@ Each guarantee is enforced by a skill; the linked file is the source of truth.
 
 - **Alignment before code.** Every non-trivial change starts with grilling — closing the gap between what you mean and what the agent builds ([`PRINCIPLES.md`](PRINCIPLES.md)).
 - **Frontend first, and no AI slop.** `/design-gate` runs before user-facing work is planned: you pick who designs (the agent via hallmark, an external design agent via a paste-ready brief, or a design you supply), and the gate closes only on your approval of a *visible* artifact. Icons come from established libraries, never free-handed SVG, and hallmark's [anti-pattern rules](skills/hallmark/references/anti-patterns.md) bind all UI code whichever lane produced the design ([`skills/design-gate/SKILL.md`](skills/design-gate/SKILL.md)).
-- **Questions arrive as questionnaires.** Whenever the agent needs your input — grilling, sizing, ticket quizzes, design sign-off, verification — it presents a structured questionnaire with selectable options and a recommendation, one decision at a time, instead of open questions in prose ([`skills/questionnaire/SKILL.md`](skills/questionnaire/SKILL.md)).
+- **Questions arrive as questionnaires.** Whenever the agent needs your input — grilling, ticket quizzes, design sign-off, verification — it presents a structured questionnaire with selectable options and a recommendation, one decision at a time, instead of open questions in prose ([`skills/questionnaire/SKILL.md`](skills/questionnaire/SKILL.md)).
 - **Done means verified.** A ticket counts as implemented only when every acceptance criterion has a verdict backed by evidence — covered by a test, confirmed by observation, or untouched by the change. The agent proves everything its own tools can reach; only the residue that needs human eyes reaches you, as a questionnaire answered one criterion at a time ([`skills/verify-acs/SKILL.md`](skills/verify-acs/SKILL.md)).
-- **Progress lives in files, not sessions.** `/checkpoint` keeps `.dev/PROGRESS.md` — a one-screen index of effort, scale, phase, and next action — current at every phase boundary, so any session can die and any fresh one can resume ([`skills/checkpoint/SKILL.md`](skills/checkpoint/SKILL.md)). The plugin install makes the writing side deterministic ([`hooks/`](hooks/)): a Stop-hook guard holds the turn open until `/checkpoint` runs whenever commits have landed past the file — so `/clear` at any moment loses nothing, and `/continue` in the fresh session picks the effort straight back up.
+- **Progress lives in files, not sessions.** `/checkpoint` keeps `.dev/PROGRESS.md` — a one-screen index of effort, phase, and next action — current at every phase boundary, so any session can die and any fresh one can resume ([`skills/checkpoint/SKILL.md`](skills/checkpoint/SKILL.md)). The plugin install makes the writing side deterministic ([`hooks/`](hooks/)): a Stop-hook guard holds the turn open until `/checkpoint` runs whenever commits have landed past the file — so `/clear` at any moment loses nothing, and `/continue` in the fresh session picks the effort straight back up.
 - **Decisions on heavy models, execution wherever it's cheapest.** Grilling, specs, architecture, and review stay on a deep-reasoning model; agent-ready tickets deliberately don't need one and can run on Codex, opencode, or a smaller Claude model — the skills are plain markdown (Agent Skills standard) and travel with the repo. Review of the diff comes back to the heavy model ([`skills/model-routing/SKILL.md`](skills/model-routing/SKILL.md)).
 - **Upstream updates flow in; your hacks survive.** `/check-upstream` diffs each pinned upstream against its tip, reports new / updated / diverged / removed skills, merges what you pick, and re-pins. Locally edited files are treated as authored code, never auto-overwritten ([`skills/check-upstream/SKILL.md`](skills/check-upstream/SKILL.md)).
 - **Skills are written well.** Every skill created or edited here goes through [`writing-great-skills`](skills/writing-great-skills/SKILL.md) first — enforced by `CLAUDE.md` so agents working on this repo do it automatically.
@@ -60,7 +57,7 @@ Each guarantee is enforced by a skill; the linked file is the source of truth.
 
 | Skill | Invocation | Job |
 | --- | --- | --- |
-| [`dev`](skills/dev/SKILL.md) | `/dev [idea or task]` | Front door: situates, sizes (S–XL), routes. |
+| [`dev`](skills/dev/SKILL.md) | `/dev` | Initializer: names the situation, lays the ground, hands over the route menu. |
 | [`checkpoint`](skills/checkpoint/SKILL.md) | auto + `/checkpoint` | Keeps `.dev/PROGRESS.md` resumable at every phase boundary. |
 | [`continue`](skills/continue/SKILL.md) | `/continue` | Resumes a fresh session from `.dev/PROGRESS.md`: verify the next action, confirm, run. |
 | [`design-gate`](skills/design-gate/SKILL.md) | auto, before UI work | Who designs; sign-off on a visible artifact before backend. |

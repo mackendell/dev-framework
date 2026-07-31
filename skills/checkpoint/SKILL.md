@@ -5,7 +5,7 @@ description: Update .dev/PROGRESS.md so a fresh session can resume the effort. U
 
 # Checkpoint
 
-`.dev/PROGRESS.md` is the resume point: the single file `/dev` reads first in a fresh session. It is an **index, not an archive** — one screen, pointing at where the detail lives (tracker, spec, handoffs, `CONTEXT.md`). A decision lives in its ticket or ADR; the progress file says which phase the effort is in and what happens next.
+`.dev/PROGRESS.md` is the resume point: the single file `/continue` reads first in a fresh session. It is an **index, not an archive** — one screen, pointing at where the detail lives (tracker, spec, handoffs, `CONTEXT.md`). A decision lives in its ticket or ADR; the progress file says which phase the effort is in and what happens next.
 
 ## Process
 
@@ -17,9 +17,6 @@ description: Update .dev/PROGRESS.md so a fresh session can resume the effort. U
 
 ## Effort
 <one line — what is being built or fixed>
-
-## Scale
-S | M | L | XL
 
 ## Phase
 <where in the route the effort is, e.g. "tickets cut, 2 of 5 implemented">

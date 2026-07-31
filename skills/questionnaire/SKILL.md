@@ -1,6 +1,6 @@
 ---
 name: questionnaire
-description: How to ask the user anything — as a structured questionnaire with selectable options, never questions in plain prose. Use whenever you are about to ask the user a question or series of questions — grilling, sizing, ticket quizzes, design sign-off, verification residue, any clarification.
+description: How to ask the user anything — as a structured questionnaire with selectable options, never questions in plain prose. Use whenever you are about to ask the user a question or series of questions — grilling, ticket quizzes, design sign-off, verification residue, any clarification.
 ---
 
 # Questionnaire
